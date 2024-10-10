@@ -1,4 +1,7 @@
-﻿namespace Project
+﻿using System.Linq.Expressions;
+using System.Numerics;
+
+namespace Project
 {
     internal class Program
     {
@@ -31,29 +34,62 @@
         //Way to remove flights
         //Maybe track capacity? We can use arbitrary values for that. IE How many 727s we have or some shit idk
     }
+    //List of applicable planes. Change Aircraft if you need to add more.
+    public enum Ptype
+    {
+        AirbusA220,
+        AirbusA300,
+        AirbusA380,
+        AirbusA310,
+        Boeing737,
+        Boeing777,
+        Boeing747,
+    }
     public class Aircraft
     {
         //A fine selection of aircraft to choose from. When constructing, I'll make it so that it assigns how much fuel is left per plane.
-        private float fuelLeft; //Expresss in precent, IE 0.80
+        private float fuelLeft = 100; //Expresss in precent, IE 0.80
         private float range;
         private int capacity;
+        private Ptype plane;
 
-        private enum ptype
+        public Aircraft(Ptype plane) 
         {
-            AirbusA220,
-            AirbusA300,
-            AirbusA380,
-            AirbusA310,
-            Boeing737,
-            Boeing777,
-            Boeing747,
+            this.plane = plane;
+            switch (plane)
+            {
+                case Ptype.AirbusA220:
+                    
+                    break;
+                case Ptype.AirbusA300:
+
+                    break;
+                case Ptype.AirbusA380:
+
+                    break;
+                case Ptype.AirbusA310:
+
+                    break;
+                case Ptype.Boeing737:
+
+                    break;
+                case Ptype.Boeing777:
+
+                    break;
+                case Ptype.Boeing747:
+
+                    break;
+                default:
+                    break;
+            }
+
         }
 
     }
     //There's probably a better way to do this, and if there is, please let me know.
-    public class flight
+    public class Flight
     {
-        public flight(Aircraft aircraft, Airport departure, Airport arrival)
+        public Flight(Aircraft aircraft, Airport departure, Airport arrival)
         {
             this.aircraft = aircraft;
             this.departure = departure;
