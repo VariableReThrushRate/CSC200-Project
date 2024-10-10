@@ -50,7 +50,19 @@
         }
 
     }
-
+    //There's probably a better way to do this, and if there is, please let me know.
+    public class flight
+    {
+        public flight(Aircraft aircraft, Airport departure, Airport arrival)
+        {
+            this.aircraft = aircraft;
+            this.departure = departure;
+            this.arrival = arrival;
+        }
+        private Aircraft aircraft;
+        private Airport departure;
+        public Airport arrival;
+    }
     public class CLatLng
     {
         public double Lat { get; private set; }
