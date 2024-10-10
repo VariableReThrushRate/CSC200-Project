@@ -34,20 +34,23 @@
     public class Aircraft
     {
         //A fine selection of aircraft to choose from. When constructing, I'll make it so that it assigns how much fuel is left per plane.
+        private float fuelLeft; //Expresss in precent, IE 0.80
+        private float range;
+        private int capacity;
+
         private enum ptype
         {
             AirbusA220,
             AirbusA300,
             AirbusA380,
             AirbusA310,
-            Boeing727,
             Boeing737,
             Boeing777,
-            Boeing787,
             Boeing747,
-
         }
+
     }
+
     public class CLatLng
     {
         public double Lat { get; private set; }
