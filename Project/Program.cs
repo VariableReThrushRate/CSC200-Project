@@ -59,7 +59,9 @@ namespace Project
             switch (plane)
             {
                 case Ptype.AirbusA220:
-                    
+                    //Range is in miles. All other aircraft follow this statistical format.
+                    capacity = 160;
+                    range = 3798.0F;
                     break;
                 case Ptype.AirbusA300:
 
