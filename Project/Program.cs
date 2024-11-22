@@ -18,6 +18,9 @@ namespace Project
             // Think of the lists as a table, each row is an instance of the object attached to the list.
 
             //Gonna start writing the UI. No clue when this will be done.
+            //UI TODO: Need function for: Removing flight, adding flight, adding plane, removing plane, etc. add/rempove all
+            //Could refactor search function to give us the indext to delete, or just reuse that line of code to make it happen.
+            //I'll probably just refactor it, on second thought.
             while (true)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
@@ -25,9 +28,12 @@ namespace Project
                 Console.WriteLine("Please select the method you'd like to run, or press EEE to exit.:");
                 Console.WriteLine("1. Basic Initialization of Data");
                 Console.WriteLine("2. Get a specific aircraft's info via its callsign.");
+                Console.WriteLine("3. Get info on a specific flight via flight number.");
+                Console.WriteLine("4. Get info on a specific Airport via callsign.");
                 Console.WriteLine("3. List all aircraft in the fleet.");
                 Console.WriteLine("4. Show all airports associated with our fleet.");
                 Console.WriteLine("5. List all the flights of our fleet.");
+                Console.Write("Insert selection here:"); 
 
                 string brug = Console.ReadLine();
                 try
@@ -48,14 +54,21 @@ namespace Project
                                 GetAircraftInfo();
                                 break;
                             case 3:
-                                ListAllAircraft();
+                                GetFlightInfo();
                                 break;
                             case 4:
-                                ListAllAirports();
+                                
                                 break;
                             case 5:
+                                ListAllAircraft();
+                                break;
+                            case 6:
+                                ListAllAirports();
+                                break;
+                            case 7:
                                 ListAllFlights();
                                 break;
+                            
                             default:
                                 Console.WriteLine("How did you get here???");
                                 break;
@@ -117,6 +130,14 @@ namespace Project
                     //brug = Console.ReadLine();
                 }
             }
+        }
+        public static void GetFlightInfo() 
+        {
+            throw new NotImplementedException();
+        }
+        public static void GetAirportInfo() 
+        {
+            throw new NotImplementedException();
         }
         // For loops people. For loops.
         public static void ListAllAircraft()
@@ -253,6 +274,7 @@ namespace Project
             this.Departure = departure;
             this.Arrival = arrival;
         }
+        public int FlightNum { get; private set; }
         public Aircraft Aircraft {  get; private set; }
         public Airport Departure { get; private set; }
         public Airport Arrival {  get; private set; }
