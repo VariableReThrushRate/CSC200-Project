@@ -1,5 +1,7 @@
-﻿using System.Linq.Expressions;
+﻿using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Numerics;
+using System.Security.AccessControl;
 
 namespace Project
 {
@@ -7,7 +9,30 @@ namespace Project
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            //Gonna start writing the UI. No clue when this will be done.
+            Console.WriteLine("Please select the ");
+
+            while (true)
+            {
+                try
+                {
+                    int sel = Convert.ToInt32(brug);
+                    if (sel >= 0 && sel <= )
+                    {
+                        Console.WriteLine("Your grade is: " + grade.ToString());
+                        break;
+                    }
+                    else
+                    {
+                        throw new InvalidGradeException();
+                    }
+                }
+                catch
+                {
+                    Console.Write("That did not work. Please try again : ");
+                    brug = Console.ReadLine();
+                }
+            }
         }
     }
     public class Airport
