@@ -30,9 +30,9 @@ namespace Project
         }
         public CLatLng getCoords() { return coords; }
         //Functionality to impliment:
-        //Way to add flights
-        //Way to remove flights
-        //Maybe track capacity? We can use arbitrary values for that. IE How many 727s we have or some shit idk
+        //Way to add flights - What did I mean by this? Flights is an instance object, they're gonna be added by instantiation or by the SQL server
+        //Way to remove flights - Flightname.Destroy lmao
+        //Maybe track capacity? We can use arbitrary values for that. IE How many 727s we have or some carp idk
     }
     //List of applicable planes. Change Aircraft if you need to add more.
     public enum Ptype
