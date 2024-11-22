@@ -43,7 +43,7 @@ namespace Project
         AirbusA310,
         Boeing737,
         Boeing777,
-        Boeing747,
+        Boeing747
     }
     public class Aircraft
     {
@@ -52,7 +52,10 @@ namespace Project
         private float range;
         private int capacity;
         private Ptype plane;
-
+        public float GetRange() { return range; }
+        public float GetCapacity() { return capacity; } 
+        public Ptype getType() { return plane; }
+        public float getFuel() {return fuelLeft; }
         public Aircraft(Ptype plane) 
         {
             this.plane = plane;
