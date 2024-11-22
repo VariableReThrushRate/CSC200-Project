@@ -12,7 +12,7 @@ namespace Project
     }
     public class Airport
     {
-        public string Name;
+        private string Name { get; }
         //IE, Seattle International is SEA. We can google these for our data.
         public string callsign;
         private CLatLng coords;
@@ -48,14 +48,10 @@ namespace Project
     public class Aircraft
     {
         //A fine selection of aircraft to choose from. When constructing, I'll make it so that it assigns how much fuel is left per plane.
-        private float fuelLeft = 100; //Expresss in precent, IE 0.80
-        private float range;
-        private int capacity;
-        private Ptype plane;
-        public float GetRange() { return range; }
-        public float GetCapacity() { return capacity; } 
-        public Ptype getType() { return plane; }
-        public float getFuel() {return fuelLeft; }
+        public float fuelLeft = 100; //Expresss in precent, IE 0.80
+        private float range { get; }
+        private int capacity { get; }
+        private Ptype plane { get; }
         public Aircraft(Ptype plane) 
         {
             this.plane = plane;
