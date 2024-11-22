@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using System.Numerics;
 using System.Security.AccessControl;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Project
 {
@@ -10,37 +11,51 @@ namespace Project
         static void Main(string[] args)
         {
             //Gonna start writing the UI. No clue when this will be done.
-            Console.WriteLine("Please select the ");
+            Console.WriteLine("Please select the method you'd like to run:");
+            Console.WriteLine("1. Basic Initialization of Data");
 
             while (true)
             {
+                string brug = Console.ReadLine();
                 try
                 {
                     int sel = Convert.ToInt32(brug);
-                    if (sel >= 0 && sel <= )
+                    if (sel >= 0 && sel <= 1) // Update that value whenever you add a method:
                     {
-                        Console.WriteLine("Your grade is: " + grade.ToString());
+                        switch (sel)
+                        {
+                            case 0:
+
+                                break;
+                            default:
+                                Console.WriteLine("How did you get here???");
+                                break;
+                        }
                         break;
                     }
                     else
                     {
-                        throw new InvalidGradeException();
+                        throw new InvalidSelectionException();
                     }
                 }
                 catch
                 {
                     Console.Write("That did not work. Please try again : ");
-                    brug = Console.ReadLine();
+                    //brug = Console.ReadLine();
                 }
-            }
+            }   
+        }
+        public void Initialize()
+        {
+
         }
     }
     public class Airport
     {
         private string Name { get; }
         //IE, Seattle International is SEA. We can google these for our data.
-        public string callsign;
-        private CLatLng coords;
+        private string callsign { get; }
+        private CLatLng coords { get; }
         public Airport(string name, string callsign, double latitude, double longitude)
         {
             Name = name;
@@ -53,7 +68,6 @@ namespace Project
             this.callsign = callsign;
             this.coords = coords;
         }
-        public CLatLng getCoords() { return coords; }
         //Functionality to impliment:
         //Way to add flights - What did I mean by this? Flights is an instance object, they're gonna be added by instantiation or by the SQL server
         //Way to remove flights - Flightname.Destroy lmao
@@ -143,6 +157,24 @@ namespace Project
             this.Lat = lat;
             this.Lng = lng;
             this.dist = 1;
+        }
+    }
+    public class InvalidSelectionException : Exception
+    {
+        // Default constructor
+        public InvalidSelectionException() : base("This is the base one")
+        {
+            Console.WriteLine("");
+        }
+
+        // Constructor that takes a custom message
+        public InvalidSelectionException(string message) : base(message)
+        {
+        }
+
+        // Constructor that takes a custom message and inner exception
+        public InvalidSelectionException(string message, Exception innerException) : base(message, innerException)
+        {
         }
     }
 }
