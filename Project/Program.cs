@@ -57,7 +57,7 @@ namespace Project
                                 GetFlightInfo();
                                 break;
                             case 4:
-                                
+                                GetAirportInfo();
                                 break;
                             case 5:
                                 ListAllAircraft();
