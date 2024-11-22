@@ -96,9 +96,17 @@ namespace Project
                         throw new InvalidSelectionException();
                     }
                 }
+                catch (NotImplementedException exception) 
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("That function is not implimented:" + exception.ToString());
+                    //Console.Write("That did not work. Please try again : ");
+                    //brug = Console.ReadLine();
+                }
                 catch
                 {
-                    Console.Write("That did not work. Please try again : ");
+                    Console.ForegroundColor= ConsoleColor.Blue;  
+                    Console.WriteLine("\nThat did not work. Please try again.\n");
                     //brug = Console.ReadLine();
                 }
             }
