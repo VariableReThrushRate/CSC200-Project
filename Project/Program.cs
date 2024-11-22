@@ -52,6 +52,10 @@ namespace Project
         {
             Airport seatac = new Airport("Seatac", "SEA", 47.448355745344145, -122.30849428001085);
             airports.Add(seatac);
+            Console.WriteLine(seatac.ToString());
+            planes.Add(new Aircraft(Ptype.AirbusA220));
+
+            
         }
     }
     public class Airport
@@ -71,6 +75,10 @@ namespace Project
             Name = name;
             this.callsign = callsign;
             this.coords = coords;
+        }
+        public override string ToString()
+        {
+            return $"Airport name: {Name}, Callsign: {callsign}, coordinates: {coords.ToString()}";
         }
         //Functionality to impliment:
         //Way to add flights - What did I mean by this? Flights is an instance object, they're gonna be added by instantiation or by the SQL server
@@ -92,9 +100,9 @@ namespace Project
     {
         //A fine selection of aircraft to choose from. When constructing, I'll make it so that it assigns how much fuel is left per plane.
         public float fuelLeft = 100; //Expresss in precent, IE 0.80
-        private float range { get; }
-        private int capacity { get; }
-        private Ptype plane { get; }
+        private float range { get; } // how far it can go
+        private int capacity { get; } // amount of humans on board
+        private Ptype plane { get; } // the kind of plane
         public Aircraft(Ptype plane) 
         {
             this.plane = plane;
@@ -161,6 +169,10 @@ namespace Project
             this.Lat = lat;
             this.Lng = lng;
             this.dist = 1;
+        }
+        public override string ToString()
+        {
+            return $"Latitude: {Lat}, Longitude: {Lng}";
         }
     }
     public class InvalidSelectionException : Exception
