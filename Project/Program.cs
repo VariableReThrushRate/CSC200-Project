@@ -68,6 +68,24 @@ namespace Project
                             case 7:
                                 ListAllFlights();
                                 break;
+                            case 8:
+                                //Add Aircraft
+                                break;
+                            case 9:
+                                //Add Airport
+                                break;
+                            case 10:
+                                //Add Flight
+                                break;
+                            case 11:
+                                //Remove Aircraft
+                                break;
+                            case 12:
+                                //Remove Airport
+                                break;
+                            case 13:
+                                //Remove Flight
+                                break;
                             default:
                                 Console.WriteLine("How did you get here???");
                                 break;
