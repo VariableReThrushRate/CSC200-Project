@@ -13,6 +13,10 @@ namespace Project
         public static List<Flight> flights = new List<Flight>();
         static void Main(string[] args)
         {
+            // Aesthetic Touches
+            Console.ForegroundColor = ConsoleColor.Green;
+            // SQL Code for connecting to the server and initializing the three lists would go here.
+            // Think of the lists as a table, each row is an instance of the object attached to the list.
             //Gonna start writing the UI. No clue when this will be done.
             Console.WriteLine("Please select the method you'd like to run:");
             Console.WriteLine("1. Basic Initialization of Data");
@@ -50,16 +54,23 @@ namespace Project
         }
         public static void Initialize()
         {
-            airports.Add(new Airport("Seatac", "SEA", 47.448355745344145, -122.30849428001085));
-            airports.Add(new Airport("Las Vegas", "LAS", 36.08, -115.152222));
+            airports.Add(new Airport("Seatac", "KSEA", 47.448355745344145, -122.30849428001085));
+            airports.Add(new Airport("Las Vegas", "KLAS", 36.08, -115.152222));
             foreach (Airport airport in airports) 
             {
                 Console.WriteLine(airport);
             }
             planes.Add(new Aircraft(Ptype.AirbusA220));
-            flights.Add(new Flight(planes[0], airports.Find(airport => airport.Callsign == "SEA"), airports.Find(airport => airport.Callsign == "LAS")));
+            flights.Add(new Flight(planes[0], airports.Find(airport => airport.Callsign == "KSEA"), airports.Find(airport => airport.Callsign == "KLAS")));
+            foreach (Flight flight in flights)
+            {
+                Console.WriteLine(flight);
+            }
+            foreach (Aircraft plane in planes)
+            {
+                Console.WriteLine(plane);
+            }
 
-            
         }
     }
     public class Airport
@@ -82,7 +93,7 @@ namespace Project
         }
         public override string ToString()
         {
-            return $"Airport name: {Name}, Callsign: {Callsign}, coordinates: {Coords}";
+            return $"Airport name: {Name}, Callsign: {Callsign}, Coordinates: {Coords}";
         }
         //Functionality to impliment:
         //Way to add flights - What did I mean by this? Flights is an instance object, they're gonna be added by instantiation or by the SQL server
@@ -103,19 +114,19 @@ namespace Project
     public class Aircraft
     {
         //A fine selection of aircraft to choose from. When constructing, I'll make it so that it assigns how much fuel is left per plane.
-        public float fuelLeft = 100; //Expresss in precent, IE 0.80
-        public float range { get; private set; } // how far it can go
-        public int capacity { get; private set; } // amount of humans on board
-        public Ptype plane { get; private set; } // the kind of plane
+        public float FuelLeft = 100; //Expresss in precent, IE 0.80
+        public float Range { get; private set; } // how far it can go
+        public int Capacity { get; private set; } // amount of humans on board
+        public Ptype Plane { get; private set; } // the kind of plane
         public Aircraft(Ptype plane) 
         {
-            this.plane = plane;
+            this.Plane = plane;
             switch (plane)
             {
                 case Ptype.AirbusA220:
                     //Range is in miles. All other aircraft follow this statistical format.
-                    capacity = 160;
-                    range = 3798.0F;
+                    Capacity = 160;
+                    Range = 3798.0F;
                     break;
                 case Ptype.AirbusA300:
 
@@ -138,7 +149,11 @@ namespace Project
                 default:
                     break;
             }
-
+            
+        }
+        public override string ToString()
+        {
+            return $"Aircraft type: {Plane}, Percentage of Fuel Left: {FuelLeft}, Range: {Range}, Capacity: {Capacity}";
         }
 
     }
@@ -154,6 +169,10 @@ namespace Project
         public Aircraft Aircraft {  get; private set; }
         public Airport Departure { get; private set; }
         public Airport Arrival {  get; private set; }
+        public override string ToString()
+        {
+            return $"Arrival Airport: {Arrival}, Departure Airport: {Departure}, Aircraft flying: {Aircraft}";
+        }
     }
     public class CLatLng
     {
