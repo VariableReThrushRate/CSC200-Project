@@ -8,24 +8,27 @@ namespace Project
 {
     internal class Program
     {
+        public static List<Airport> airports = new List<Airport>();
+        public static List<Aircraft> planes = new List<Aircraft>();
+        public static List<Flight> flights = new List<Flight>();
         static void Main(string[] args)
         {
             //Gonna start writing the UI. No clue when this will be done.
             Console.WriteLine("Please select the method you'd like to run:");
             Console.WriteLine("1. Basic Initialization of Data");
-
+            
             while (true)
             {
                 string brug = Console.ReadLine();
                 try
                 {
                     int sel = Convert.ToInt32(brug);
-                    if (sel >= 0 && sel <= 1) // Update that value whenever you add a method:
+                    if (sel >= 1 && sel <= 1) // Update that value whenever you add a method:
                     {
                         switch (sel)
                         {
-                            case 0:
-
+                            case 1:
+                                Initialize();
                                 break;
                             default:
                                 Console.WriteLine("How did you get here???");
@@ -45,9 +48,10 @@ namespace Project
                 }
             }   
         }
-        public void Initialize()
+        public static void Initialize()
         {
-
+            Airport seatac = new Airport("Seatac", "SEA", 47.448355745344145, -122.30849428001085);
+            airports.Add(seatac);
         }
     }
     public class Airport
