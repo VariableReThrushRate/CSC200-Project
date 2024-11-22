@@ -50,35 +50,39 @@ namespace Project
         }
         public static void Initialize()
         {
-            Airport seatac = new Airport("Seatac", "SEA", 47.448355745344145, -122.30849428001085);
-            airports.Add(seatac);
-            Console.WriteLine(seatac.ToString());
+            airports.Add(new Airport("Seatac", "SEA", 47.448355745344145, -122.30849428001085));
+            airports.Add(new Airport("Las Vegas", "LAS", 36.08, -115.152222));
+            foreach (Airport airport in airports) 
+            {
+                Console.WriteLine(airport);
+            }
             planes.Add(new Aircraft(Ptype.AirbusA220));
+            flights.Add(new Flight(planes[0], airports.Find(airport => airport.Callsign == "SEA"), airports.Find(airport => airport.Callsign == "LAS")));
 
             
         }
     }
     public class Airport
     {
-        private string Name { get; }
+        public string Name { get; private set; }
         //IE, Seattle International is SEA. We can google these for our data.
-        private string callsign { get; }
-        private CLatLng coords { get; }
+        public string Callsign { get; }
+        public CLatLng Coords { get; private set; }
         public Airport(string name, string callsign, double latitude, double longitude)
         {
             Name = name;
-            this.callsign = callsign;
-            this.coords = new CLatLng(latitude, longitude);
+            this.Callsign = callsign;
+            this.Coords = new CLatLng(latitude, longitude);
         }
         public Airport(string name, string callsign, CLatLng coords)
         {
             Name = name;
-            this.callsign = callsign;
-            this.coords = coords;
+            this.Callsign = callsign;
+            this.Coords = coords;
         }
         public override string ToString()
         {
-            return $"Airport name: {Name}, Callsign: {callsign}, coordinates: {coords.ToString()}";
+            return $"Airport name: {Name}, Callsign: {Callsign}, coordinates: {Coords}";
         }
         //Functionality to impliment:
         //Way to add flights - What did I mean by this? Flights is an instance object, they're gonna be added by instantiation or by the SQL server
@@ -100,9 +104,9 @@ namespace Project
     {
         //A fine selection of aircraft to choose from. When constructing, I'll make it so that it assigns how much fuel is left per plane.
         public float fuelLeft = 100; //Expresss in precent, IE 0.80
-        private float range { get; } // how far it can go
-        private int capacity { get; } // amount of humans on board
-        private Ptype plane { get; } // the kind of plane
+        public float range { get; private set; } // how far it can go
+        public int capacity { get; private set; } // amount of humans on board
+        public Ptype plane { get; private set; } // the kind of plane
         public Aircraft(Ptype plane) 
         {
             this.plane = plane;
@@ -143,32 +147,32 @@ namespace Project
     {
         public Flight(Aircraft aircraft, Airport departure, Airport arrival)
         {
-            this.aircraft = aircraft;
-            this.departure = departure;
-            this.arrival = arrival;
+            this.Aircraft = aircraft;
+            this.Departure = departure;
+            this.Arrival = arrival;
         }
-        private Aircraft aircraft;
-        private Airport departure;
-        public Airport arrival;
+        public Aircraft Aircraft {  get; private set; }
+        public Airport Departure { get; private set; }
+        public Airport Arrival {  get; private set; }
     }
     public class CLatLng
     {
         public double Lat { get; private set; }
         public double Lng { get; private set; }
-        public double dist { get; private set; }
+        public double Dist { get; private set; }
 
 
         public CLatLng(double lat, double lng, double dist)
         {
             this.Lat = lat;
             this.Lng = lng;
-            this.dist = dist;
+            this.Dist = dist;
         }
         public CLatLng(double lat, double lng)
         {
             this.Lat = lat;
             this.Lng = lng;
-            this.dist = 1;
+            this.Dist = 1;
         }
         public override string ToString()
         {
