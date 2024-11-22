@@ -68,7 +68,6 @@ namespace Project
                             case 7:
                                 ListAllFlights();
                                 break;
-                            
                             default:
                                 Console.WriteLine("How did you get here???");
                                 break;
