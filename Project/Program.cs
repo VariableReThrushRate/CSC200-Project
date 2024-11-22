@@ -33,7 +33,7 @@ namespace Project
                 Console.WriteLine("3. List all aircraft in the fleet.");
                 Console.WriteLine("4. Show all airports associated with our fleet.");
                 Console.WriteLine("5. List all the flights of our fleet.");
-                Console.Write("Insert selection here:"); 
+                Console.Write("Insert selection here: "); 
 
                 string brug = Console.ReadLine();
                 try
