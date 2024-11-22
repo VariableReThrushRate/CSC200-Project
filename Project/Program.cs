@@ -14,31 +14,52 @@ namespace Project
         static void Main(string[] args)
         {
             // Aesthetic Touches
-            Console.ForegroundColor = ConsoleColor.Green;
             // SQL Code for connecting to the server and initializing the three lists would go here.
             // Think of the lists as a table, each row is an instance of the object attached to the list.
+
             //Gonna start writing the UI. No clue when this will be done.
-            Console.WriteLine("Please select the method you'd like to run:");
-            Console.WriteLine("1. Basic Initialization of Data");
-            
             while (true)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
+
+                Console.WriteLine("Please select the method you'd like to run, or press EEE to exit.:");
+                Console.WriteLine("1. Basic Initialization of Data");
+                Console.WriteLine("2. Get a specific aircraft's info via its callsign.");
+                Console.WriteLine("3. List all aircraft in the fleet.");
+                Console.WriteLine("4. Show all airports associated with our fleet.");
+                Console.WriteLine("5. List all the flights of our fleet.");
+
                 string brug = Console.ReadLine();
                 try
                 {
+                    //exit line
+                    if (brug == "EEE") {
+                        break;
+                    }
                     int sel = Convert.ToInt32(brug);
-                    if (sel >= 1 && sel <= 1) // Update that value whenever you add a method:
+                    if (sel >= 1 && sel <= 5) // Update that value whenever you add a method:
                     {
                         switch (sel)
                         {
                             case 1:
                                 Initialize();
                                 break;
+                            case 2:
+                                GetAircraftInfo();
+                                break;
+                            case 3:
+                                ListAllAircraft();
+                                break;
+                            case 4:
+                                ListAllAirports();
+                                break;
+                            case 5:
+                                ListAllFlights();
+                                break;
                             default:
                                 Console.WriteLine("How did you get here???");
                                 break;
                         }
-                        break;
                     }
                     else
                     {
@@ -50,17 +71,17 @@ namespace Project
                     Console.Write("That did not work. Please try again : ");
                     //brug = Console.ReadLine();
                 }
-            }   
+            }
         }
         public static void Initialize()
         {
             airports.Add(new Airport("Seatac", "KSEA", 47.448355745344145, -122.30849428001085));
             airports.Add(new Airport("Las Vegas", "KLAS", 36.08, -115.152222));
-            foreach (Airport airport in airports) 
+            foreach (Airport airport in airports)
             {
                 Console.WriteLine(airport);
             }
-            planes.Add(new Aircraft(Ptype.AirbusA220));
+            planes.Add(new Aircraft("Whiskey Alpha Lima", Ptype.AirbusA220));
             flights.Add(new Flight(planes[0], airports.Find(airport => airport.Callsign == "KSEA"), airports.Find(airport => airport.Callsign == "KLAS")));
             foreach (Flight flight in flights)
             {
@@ -70,8 +91,65 @@ namespace Project
             {
                 Console.WriteLine(plane);
             }
-
         }
+        public static void GetAircraftInfo()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Please insert the callsign of the aircraft you want to see, or type 'EEE' to leave the function:");
+            while (true)
+            {
+                string brug = Console.ReadLine();
+                try
+                {
+                    if (brug == "EEE")
+                    {
+                        break;
+                    }
+                    
+                    var found = planes.Find(plane => plane.Callsign == brug);
+                    if (found == null) { throw new InvalidSelectionException(); }
+                    Console.WriteLine("The aircraft you requested: " + found.ToString());
+                    break;
+                }
+                catch
+                {
+                    Console.Write("Callsign not found. Please try again, or type 'EEE' to exit.");
+                    //brug = Console.ReadLine();
+                }
+            }
+        }
+        // For loops people. For loops.
+        public static void ListAllAircraft()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+
+            foreach (Aircraft plane in planes)
+            {
+                Console.WriteLine("Displaying all planes:");
+                Console.WriteLine(plane);
+            }
+        }
+        public static void ListAllAirports()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+
+            foreach (Airport airport in airports)
+            {
+                Console.WriteLine("Displaying all airports:");
+                Console.WriteLine(airport);
+            }
+        }
+        public static void ListAllFlights()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+
+            foreach (Flight flight in flights)
+            {
+                Console.WriteLine("Displaying all flight information:");
+                Console.WriteLine(flight);
+            }
+        }
+    }
     }
     public class Airport
     {
@@ -113,13 +191,15 @@ namespace Project
     }
     public class Aircraft
     {
+        public string Callsign { get; private set; }
         //A fine selection of aircraft to choose from. When constructing, I'll make it so that it assigns how much fuel is left per plane.
         public float FuelLeft = 100; //Expresss in precent, IE 0.80
         public float Range { get; private set; } // how far it can go
         public int Capacity { get; private set; } // amount of humans on board
         public Ptype Plane { get; private set; } // the kind of plane
-        public Aircraft(Ptype plane) 
+        public Aircraft(string callsign, Ptype plane) 
         {
+            this.Callsign = callsign;
             this.Plane = plane;
             switch (plane)
             {
@@ -129,22 +209,28 @@ namespace Project
                     Range = 3798.0F;
                     break;
                 case Ptype.AirbusA300:
-
+                    Capacity = 345;
+                    Range = 4685F;
                     break;
                 case Ptype.AirbusA380:
-
+                    Capacity = 525;
+                    Range = 9206.236F;
                     break;
                 case Ptype.AirbusA310:
-
+                    Capacity = 200;
+                    Range = 5002F;
                     break;
                 case Ptype.Boeing737:
-
+                    Capacity = 180;
+                    Range = 3582F;
                     break;
                 case Ptype.Boeing777:
-
+                    Capacity = 300;
+                    Range = 9844.3838F;
                     break;
                 case Ptype.Boeing747:
-
+                    Capacity = 500;
+                    Range = 8357.4F;
                     break;
                 default:
                     break;
@@ -155,6 +241,7 @@ namespace Project
         {
             return $"Aircraft type: {Plane}, Percentage of Fuel Left: {FuelLeft}, Range: {Range}, Capacity: {Capacity}";
         }
+        
 
     }
     //There's probably a better way to do this, and if there is, please let me know.
@@ -216,4 +303,4 @@ namespace Project
         {
         }
     }
-}
+
