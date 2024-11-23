@@ -21,18 +21,20 @@ namespace Project
             //UI TODO: Need function for: Removing flight, adding flight, adding plane, removing plane, etc. add/rempove all
             //Could refactor search function to give us the indext to delete, or just reuse that line of code to make it happen.
             //I'll probably just refactor it, on second thought.
+            //Moved initialize here. Drann, when you impliment SQL stuff, delete this line, and then replace it with initializing the lists based on the tables.
+            //The service class should handle this.
+            Initialize();
             while (true)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
 
                 Console.WriteLine("Please select the method you'd like to run, or press EEE to exit.:");
-                Console.WriteLine("1. Basic Initialization of Data");
-                Console.WriteLine("2. Get a specific aircraft's info via its callsign.");
-                Console.WriteLine("3. Get info on a specific flight via flight number.");
-                Console.WriteLine("4. Get info on a specific Airport via callsign.");
-                Console.WriteLine("3. List all aircraft in the fleet.");
-                Console.WriteLine("4. Show all airports associated with our fleet.");
-                Console.WriteLine("5. List all the flights of our fleet.");
+                Console.WriteLine("1. Get a specific aircraft's info via its callsign.");
+                Console.WriteLine("2. Get info on a specific flight via flight number.");
+                Console.WriteLine("3. Get info on a specific Airport via callsign.");
+                Console.WriteLine("4. List all aircraft in the fleet.");
+                Console.WriteLine("5. Show all airports associated with our fleet.");
+                Console.WriteLine("6. List all the flights of our fleet.");
                 Console.Write("Insert selection here: "); 
 
                 string brug = Console.ReadLine();
@@ -48,42 +50,39 @@ namespace Project
                         switch (sel)
                         {
                             case 1:
-                                Initialize();
-                                break;
-                            case 2:
                                 GetAircraftInfo();
                                 break;
-                            case 3:
+                            case 2:
                                 GetFlightInfo();
                                 break;
-                            case 4:
+                            case 3:
                                 GetAirportInfo();
                                 break;
-                            case 5:
+                            case 4:
                                 ListAllAircraft();
                                 break;
-                            case 6:
+                            case 5:
                                 ListAllAirports();
                                 break;
-                            case 7:
+                            case 6:
                                 ListAllFlights();
                                 break;
-                            case 8:
+                            case 7:
                                 //Add Aircraft
                                 break;
-                            case 9:
+                            case 8:
                                 //Add Airport
                                 break;
-                            case 10:
+                            case 9:
                                 //Add Flight
                                 break;
-                            case 11:
+                            case 10:
                                 //Remove Aircraft
                                 break;
-                            case 12:
+                            case 11:
                                 //Remove Airport
                                 break;
-                            case 13:
+                            case 12:
                                 //Remove Flight
                                 break;
                             default:
