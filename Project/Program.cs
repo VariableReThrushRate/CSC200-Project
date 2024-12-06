@@ -35,6 +35,12 @@ namespace Project
                 Console.WriteLine("4. List all aircraft in the fleet.");
                 Console.WriteLine("5. Show all airports associated with our fleet.");
                 Console.WriteLine("6. List all the flights of our fleet.");
+                Console.WriteLine("7. Add an aicraft.");
+                Console.WriteLine("8. Add an airport.");
+                Console.WriteLine("9. Add a flight.");
+                Console.WriteLine("10. Remove an aircraft.");
+                Console.WriteLine("11. Remove an airport.");
+                Console.WriteLine("12. Remove a flight.");
                 Console.Write("Insert selection here: ");
 
                 string brug = Console.ReadLine();
