@@ -35,13 +35,14 @@ namespace Project
                 Console.WriteLine("4. List all aircraft in the fleet.");
                 Console.WriteLine("5. Show all airports associated with our fleet.");
                 Console.WriteLine("6. List all the flights of our fleet.");
-                Console.Write("Insert selection here: "); 
+                Console.Write("Insert selection here: ");
 
                 string brug = Console.ReadLine();
                 try
                 {
                     //exit line
-                    if (brug == "EEE") {
+                    if (brug == "EEE")
+                    {
                         break;
                     }
                     int sel = Convert.ToInt32(brug);
@@ -95,7 +96,7 @@ namespace Project
                         throw new InvalidSelectionException();
                     }
                 }
-                catch (NotImplementedException exception) 
+                catch (NotImplementedException exception)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine("That function is not implimented:" + exception.ToString());
@@ -104,7 +105,7 @@ namespace Project
                 }
                 catch (Exception exception)
                 {
-                    Console.ForegroundColor= ConsoleColor.Blue;  
+                    Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine("\nThat did not work. Please try again.\n");
                     Console.Write(exception.ToString());
                     //brug = Console.ReadLine();
@@ -157,7 +158,7 @@ namespace Project
                 catch { Console.WriteLine("Please try again, as that did not work."); }
             }
         }
-        public static void GetFlightInfo() 
+        public static void GetFlightInfo()
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Please insert the Flight Number of the Flight you want to see, or type 'EEE' to leave the function:");
@@ -182,15 +183,41 @@ namespace Project
                     Console.Write("Flight number not found. Please try again, or type 'EEE' to exit.");
                     //brug = Console.ReadLine();
                 }
-                catch 
+                catch
                 {
                     Console.WriteLine("Please try again, as that did not work.");
                 }
             }
         }
-        public static void GetAirportInfo() 
+        public static void GetAirportInfo()
         {
-            throw new NotImplementedException();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Please insert the Airport Callsign of the Airport you want to see, or type 'EEE' to leave the function:");
+            while (true)
+            {
+                string brug = Console.ReadLine();
+                try
+                {
+                    if (brug == "EEE")
+                    {
+                        break;
+                    }
+
+                    var found = airports.Find(Port => Port.Callsign == brug);
+                    if (found == null) { throw new InvalidSelectionException(); }
+                    Console.WriteLine("The flight you requested: " + found.ToString());
+                    break;
+                }
+                catch (InvalidSelectionException exception)
+                {
+                    Console.Write("Airport not found. Please try again, or type 'EEE' to exit.");
+                    //brug = Console.ReadLine();
+                }
+                catch
+                {
+                    Console.WriteLine("Please try again, as that did not work.");
+                }
+            }
         }
         // For loops people. For loops.
         public static void ListAllAircraft()
@@ -223,13 +250,14 @@ namespace Project
                 Console.WriteLine(flight);
             }
         }
+
     }
-    }
+
     public class Airport
     {
         public string Name { get; private set; }
         //IE, Seattle International is SEA. We can google these for our data.
-        public string Callsign { get; }
+        public string Callsign { get; private set; }
         public CLatLng Coords { get; private set; }
         public Airport(string name, string callsign, double latitude, double longitude)
         {
@@ -271,7 +299,7 @@ namespace Project
         public float Range { get; private set; } // how far it can go
         public int Capacity { get; private set; } // amount of humans on board
         public Ptype Plane { get; private set; } // the kind of plane
-        public Aircraft(string callsign, Ptype plane) 
+        public Aircraft(string callsign, Ptype plane)
         {
             this.Callsign = callsign;
             this.Plane = plane;
@@ -309,13 +337,13 @@ namespace Project
                 default:
                     break;
             }
-            
+
         }
         public override string ToString()
         {
             return $"Aircraft type: {Plane}, Percentage of Fuel Left: {FuelLeft}, Range: {Range}, Capacity: {Capacity}";
         }
-        
+
 
     }
     //There's probably a better way to do this, and if there is, please let me know.
@@ -329,9 +357,9 @@ namespace Project
             this.Arrival = arrival;
         }
         public int FlightNum { get; private set; }
-        public Aircraft Aircraft {  get; private set; }
+        public Aircraft Aircraft { get; private set; }
         public Airport Departure { get; private set; }
-        public Airport Arrival {  get; private set; }
+        public Airport Arrival { get; private set; }
         public override string ToString()
         {
             return $"Arrival Airport: {Arrival}, Departure Airport: {Departure}, Aircraft flying: {Aircraft}";
@@ -379,4 +407,4 @@ namespace Project
         {
         }
     }
-
+}
