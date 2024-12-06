@@ -9,7 +9,7 @@ namespace Project
     internal class Program
     {
         public static List<Airport> airports = new List<Airport>();
-        public static List<Aircraft> planes = new List<Aircraft>();
+        //public static List<Aircraft> planes = new List<Aircraft>();
         public static List<Flight> flights = new List<Flight>();
         static void Main(string[] args)
         {
@@ -132,16 +132,13 @@ namespace Project
             {
                 Console.WriteLine(airport);
             }
-            planes.Add(new Aircraft("Whiskey Alpha Lima", Ptype.AirbusA220));
-            flights.Add(new Flight(1, planes[0], airports.Find(airport => airport.Callsign == "KSEA"), airports.Find(airport => airport.Callsign == "KLAS")));
+            //planes.Add();
+            flights.Add(new Flight(1, new Aircraft("Whiskey Alpha Lima", Ptype.AirbusA220), airports.Find(airport => airport.Callsign == "KSEA"), airports.Find(airport => airport.Callsign == "KLAS")));
             foreach (Flight flight in flights)
             {
                 Console.WriteLine(flight);
             }
-            foreach (Aircraft plane in planes)
-            {
-                Console.WriteLine(plane);
-            }
+            
         }
         public static void GetAircraftInfo()
         {
@@ -152,12 +149,19 @@ namespace Project
                 string brug = Console.ReadLine();
                 try
                 {
+                    Aircraft found = null;
                     if (brug == "EEE")
                     {
                         break;
                     }
-
-                    var found = planes.Find(plane => plane.Callsign == brug);
+                    foreach (Flight flight in flights)
+                    {
+                        if (flight.Aircraft.Callsign == brug) 
+                        {
+                            found = flight.Aircraft; break;
+                        }
+                    }
+                    //var found = planes.Find(plane => plane.Callsign == brug);
                     if (found == null) { throw new InvalidSelectionException(); }
                     Console.WriteLine("The aircraft you requested: " + found.ToString());
                     break;
