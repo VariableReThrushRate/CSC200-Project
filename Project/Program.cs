@@ -86,15 +86,15 @@ namespace Project
                                 //Add Flight
                                 AddFlight();
                                 break;
-                            case 21:
+                            case 10:
                                 //Remove Aircraft
                                 RemoveAircraft();
                                 break;
-                            case 10:
+                            case 11:
                                 //Remove Airport
                                 RemoveAirport();
                                 break;
-                            case 11:
+                            case 12:
                                 //Remove Flight
                                 RemoveFlight();
                                 break;
@@ -240,10 +240,9 @@ namespace Project
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Displaying all aircraft:");
-            foreach (Flight flight in flights)
+            foreach (Aircraft flight in planes)
             {
-                Console.WriteLine("Assigned to flight: " + flight.FlightNum.ToString());
-                Console.WriteLine(flight.Aircraft);
+                Console.WriteLine(flight);
             }
         }
         public static void ListAllAirports()
