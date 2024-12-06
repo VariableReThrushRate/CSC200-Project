@@ -35,12 +35,10 @@ namespace Project
                 Console.WriteLine("4. List all aircraft in the fleet.");
                 Console.WriteLine("5. Show all airports associated with our fleet.");
                 Console.WriteLine("6. List all the flights of our fleet.");
-                Console.WriteLine("7. Add an aicraft.");
                 Console.WriteLine("8. Add an airport.");
                 Console.WriteLine("9. Add a flight.");
-                Console.WriteLine("10. Remove an aircraft.");
-                Console.WriteLine("11. Remove an airport.");
-                Console.WriteLine("12. Remove a flight.");
+                Console.WriteLine("10. Remove an airport.");
+                Console.WriteLine("11. Remove a flight.");
                 Console.Write("Insert selection here: ");
 
                 string brug = Console.ReadLine();
@@ -74,7 +72,7 @@ namespace Project
                             case 6:
                                 ListAllFlights();
                                 break;
-                            case 7:
+                            case 20:
                                 //Add Aircraft
                                 AddAircraft();
                                 break;
@@ -86,15 +84,15 @@ namespace Project
                                 //Add Flight
                                 AddFlight();
                                 break;
-                            case 10:
+                            case 21:
                                 //Remove Aircraft
                                 RemoveAircraft();
                                 break;
-                            case 11:
+                            case 10:
                                 //Remove Airport
                                 RemoveAirport();
                                 break;
-                            case 12:
+                            case 11:
                                 //Remove Flight
                                 RemoveFlight();
                                 break;
@@ -239,11 +237,11 @@ namespace Project
         public static void ListAllAircraft()
         {
             Console.ForegroundColor = ConsoleColor.Red;
-
-            foreach (Aircraft plane in planes)
+            Console.WriteLine("Displaying all aircraft:");
+            foreach (Flight flight in flights)
             {
-                Console.WriteLine("Displaying all planes:");
-                Console.WriteLine(plane);
+                Console.WriteLine("Assigned to flight: " + flight.FlightNum.ToString());
+                Console.WriteLine(flight.Aircraft);
             }
         }
         public static void ListAllAirports()
