@@ -74,7 +74,7 @@ namespace Project
                             case 6:
                                 ListAllFlights();
                                 break;
-                            case 20:
+                            case 7:
                                 //Add Aircraft
                                 AddAircraft();
                                 break;
@@ -258,7 +258,41 @@ namespace Project
                 Console.WriteLine(flight);
             }
         }
-        public static void AddAircraft() { }
+        public static void AddAircraft() 
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Now adding a new aircraft. Type EEE to leave the function.");
+            while (true)
+            {
+                Console.Write("Please enter a callsign for this aircraft:");
+                string Callsign = Console.ReadLine();
+                Console.WriteLine("Please select a type for your aircraft from the following:");
+                foreach (var e in Enum.GetValues(typeof(Ptype))) 
+                {
+                    Console.WriteLine(e.ToString());
+                }
+                string Type = Console.ReadLine();
+                try
+                {
+                    if (Callsign == "EEE" || Type == "EEE")
+                    {
+                        break;
+                    }
+
+                    
+                    break;
+                }
+                catch (InvalidSelectionException exception)
+                {
+                    Console.Write("Airport not found. Please try again, or type 'EEE' to exit.");
+                    //brug = Console.ReadLine();
+                }
+                catch
+                {
+                    Console.WriteLine("Please try again, as that did not work.");
+                }
+            }
+        }
         public static void AddFlight() { throw new NotImplementedException(); }
         public static void AddAirport() { throw new NotImplementedException(); }
         public static void RemoveAircraft() { throw new NotImplementedException(); }
