@@ -39,6 +39,8 @@ namespace Project
                 Console.WriteLine("9. Add a flight.");
                 Console.WriteLine("10. Remove an airport.");
                 Console.WriteLine("11. Remove a flight.");
+                Console.WriteLine("11. Remove an airport.");
+                Console.WriteLine("12. Remove a flight.");
                 Console.Write("Insert selection here: ");
 
                 string brug = Console.ReadLine();
