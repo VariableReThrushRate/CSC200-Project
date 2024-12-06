@@ -120,7 +120,7 @@ namespace Project
                 Console.WriteLine(airport);
             }
             planes.Add(new Aircraft("Whiskey Alpha Lima", Ptype.AirbusA220));
-            flights.Add(new Flight(planes[0], airports.Find(airport => airport.Callsign == "KSEA"), airports.Find(airport => airport.Callsign == "KLAS")));
+            flights.Add(new Flight(1, planes[0], airports.Find(airport => airport.Callsign == "KSEA"), airports.Find(airport => airport.Callsign == "KLAS")));
             foreach (Flight flight in flights)
             {
                 Console.WriteLine(flight);
@@ -143,22 +143,50 @@ namespace Project
                     {
                         break;
                     }
-                    
+
                     var found = planes.Find(plane => plane.Callsign == brug);
                     if (found == null) { throw new InvalidSelectionException(); }
                     Console.WriteLine("The aircraft you requested: " + found.ToString());
                     break;
                 }
-                catch
+                catch (InvalidSelectionException exception)
                 {
                     Console.Write("Callsign not found. Please try again, or type 'EEE' to exit.");
                     //brug = Console.ReadLine();
                 }
+                catch { Console.WriteLine("Please try again, as that did not work."); }
             }
         }
         public static void GetFlightInfo() 
         {
-            throw new NotImplementedException();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Please insert the Flight Number of the Flight you want to see, or type 'EEE' to leave the function:");
+            while (true)
+            {
+                string brug = Console.ReadLine();
+                try
+                {
+                    int balug = Convert.ToInt32(brug);
+                    if (brug == "EEE")
+                    {
+                        break;
+                    }
+
+                    var found = flights.Find(flight => flight.FlightNum == balug);
+                    if (found == null) { throw new InvalidSelectionException(); }
+                    Console.WriteLine("The flight you requested: " + found.ToString());
+                    break;
+                }
+                catch (InvalidSelectionException exception)
+                {
+                    Console.Write("Flight number not found. Please try again, or type 'EEE' to exit.");
+                    //brug = Console.ReadLine();
+                }
+                catch 
+                {
+                    Console.WriteLine("Please try again, as that did not work.");
+                }
+            }
         }
         public static void GetAirportInfo() 
         {
