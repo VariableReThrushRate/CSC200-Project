@@ -9,7 +9,7 @@ namespace Project
     internal class Program
     {
         public static List<Airport> airports = new List<Airport>();
-        //public static List<Aircraft> planes = new List<Aircraft>();
+        public static List<Aircraft> planes = new List<Aircraft>();
         public static List<Flight> flights = new List<Flight>();
         static void Main(string[] args)
         {
