@@ -149,19 +149,12 @@ namespace Project
                 string brug = Console.ReadLine();
                 try
                 {
-                    Aircraft found = null;
                     if (brug == "EEE")
                     {
                         break;
                     }
-                    foreach (Flight flight in flights)
-                    {
-                        if (flight.Aircraft.Callsign == brug) 
-                        {
-                            found = flight.Aircraft; break;
-                        }
-                    }
-                    //var found = planes.Find(plane => plane.Callsign == brug);
+
+                    var found = planes.Find(plane => plane.Callsign == brug);
                     if (found == null) { throw new InvalidSelectionException(); }
                     Console.WriteLine("The aircraft you requested: " + found.ToString());
                     break;
