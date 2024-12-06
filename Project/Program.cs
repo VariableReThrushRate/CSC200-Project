@@ -45,7 +45,7 @@ namespace Project
                         break;
                     }
                     int sel = Convert.ToInt32(brug);
-                    if (sel >= 1 && sel <= 5) // Update that value whenever you add a method:
+                    if (sel >= 1 && sel <= 12) // Update that value whenever you add a method:
                     {
                         switch (sel)
                         {
@@ -102,10 +102,11 @@ namespace Project
                     //Console.Write("That did not work. Please try again : ");
                     //brug = Console.ReadLine();
                 }
-                catch
+                catch (Exception exception)
                 {
                     Console.ForegroundColor= ConsoleColor.Blue;  
                     Console.WriteLine("\nThat did not work. Please try again.\n");
+                    Console.Write(exception.ToString());
                     //brug = Console.ReadLine();
                 }
             }
@@ -292,8 +293,9 @@ namespace Project
     //There's probably a better way to do this, and if there is, please let me know.
     public class Flight
     {
-        public Flight(Aircraft aircraft, Airport departure, Airport arrival)
+        public Flight(int flightnum, Aircraft aircraft, Airport departure, Airport arrival)
         {
+            this.FlightNum = flightnum;
             this.Aircraft = aircraft;
             this.Departure = departure;
             this.Arrival = arrival;
