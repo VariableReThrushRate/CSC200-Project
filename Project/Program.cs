@@ -70,21 +70,27 @@ namespace Project
                                 break;
                             case 7:
                                 //Add Aircraft
+                                AddAircraft();
                                 break;
                             case 8:
                                 //Add Airport
+                                AddAirport();
                                 break;
                             case 9:
                                 //Add Flight
+                                AddFlight();
                                 break;
                             case 10:
                                 //Remove Aircraft
+                                RemoveAircraft();
                                 break;
                             case 11:
                                 //Remove Airport
+                                RemoveAirport();
                                 break;
                             case 12:
                                 //Remove Flight
+                                RemoveFlight();
                                 break;
                             default:
                                 Console.WriteLine("How did you get here???");
@@ -250,7 +256,12 @@ namespace Project
                 Console.WriteLine(flight);
             }
         }
-
+        public static void AddAircraft() { }
+        public static void AddFlight() { throw new NotImplementedException(); }
+        public static void AddAirport() { throw new NotImplementedException(); }
+        public static void RemoveAircraft() { throw new NotImplementedException(); }
+        public static void RemoveFlight() { throw new NotImplementedException(); }
+        public static void RemoveAirport() { throw new NotImplementedException(); }
     }
 
     public class Airport
