@@ -278,17 +278,19 @@ namespace Project
                     {
                         break;
                     }
-
+                    Ptype tmp;
+                    if(!Enum.TryParse<Ptype>(Type, out tmp)) 
+                    {
+                        throw new FormatException();
+                    }
+                    planes.Add(new Aircraft(Callsign, tmp));
                     
                     break;
                 }
-                catch (InvalidSelectionException exception)
+                
+                catch (Exception e)
                 {
-                    Console.Write("Airport not found. Please try again, or type 'EEE' to exit.");
-                    //brug = Console.ReadLine();
-                }
-                catch
-                {
+                    Console.WriteLine($"Error: {e.Message}, {e.ToString}");
                     Console.WriteLine("Please try again, as that did not work.");
                 }
             }
