@@ -422,6 +422,10 @@ namespace Project
                     {
                         break;
                     }
+                    else if (Callsign == null || Name == null) 
+                    {
+                        throw new InvalidSelectionException();
+                    }
                     airports.Add(new Airport(Name, Callsign, Convert.ToDouble(l1), Convert.ToDouble(l2)));
                     break;
                 }
