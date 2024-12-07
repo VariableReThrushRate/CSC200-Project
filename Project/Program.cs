@@ -611,7 +611,7 @@ namespace Project
         public Airport Arrival { get; private set; }
         public override string ToString()
         {
-            return $"Arrival Airport: {Arrival}, Departure Airport: {Departure}, Aircraft flying: {Aircraft}";
+            return $"Arrival Airport: {Arrival}, Departure Airport: {Departure}, Aircraft flying: {Aircraft}, Distance traveled: {CLatLng.DistanceV2(Arrival.Coords, Departure.Coords)}";
         }
     }
     public class CLatLng
@@ -637,16 +637,16 @@ namespace Project
         {
             return $"Latitude: {Lat}, Longitude: {Lng}";
         }
-        public static double DistanceV2(CLatLng Departure, CLatLng Arrival)
+        //Converted real quick from some SQL code I had lying around. Very neat stuff.
+        public static double DistanceV2(CLatLng Arrival, CLatLng Departure)
         {
             const double degreesToRadians = Math.PI / 180.0;
             const double earthRadiusMiles = 3958.75;
 
-            // Convert degrees to radians
-            double lat1 = Departure.Lat * degreesToRadians;
-            double long1 = Departure.Lng * degreesToRadians;
-            double lat2 = Arrival.Lat * degreesToRadians;
-            double long2 = Arrival.Lng * degreesToRadians;
+            double lat1 = Arrival.Lat * degreesToRadians;
+            double long1 = Arrival.Lng * degreesToRadians;
+            double lat2 = Departure.Lat * degreesToRadians;
+            double long2 = Departure.Lng *  degreesToRadians;
 
             // Calculate the distance
             double d = (Math.Sin(lat1) * Math.Sin(lat2)) + (Math.Cos(lat1) * Math.Cos(lat2) * Math.Cos(long2 - long1));
@@ -660,7 +660,6 @@ namespace Project
             return d;
         }
     }
-}
     public class InvalidSelectionException : Exception
     {
         // Default constructor
