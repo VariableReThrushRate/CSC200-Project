@@ -168,6 +168,22 @@ namespace Project
                 catch { Console.WriteLine("Please try again, as that did not work."); }
             }
         }
+        public static Aircraft GetAircraft(string callsign)
+        {
+        var found = planes.Find(plane => plane.Callsign == callsign);
+        if (found == null) { throw new InvalidSelectionException(); }
+        return found;
+                
+        }
+        public static Airport GetAirport(string callsign)
+        {
+
+
+            var found = airports.Find(port => port.Callsign == callsign);
+            if (found == null) { throw new InvalidSelectionException(); }
+            return found;
+
+        }
         public static void GetFlightInfo()
         {
             Console.ForegroundColor = ConsoleColor.Red;
@@ -296,7 +312,32 @@ namespace Project
                 }
             }
         }
-        public static void AddFlight() { throw new NotImplementedException(); }
+        public static void AddFlight() 
+        {
+            int flightnum;
+            Console.WriteLine("Adding a new flight!"); 
+            
+            while (true) 
+            {
+                Console.Write("Please input a flight number: ");
+                try
+                {
+                    string TFflightnum = Console.ReadLine();
+                    flightnum = Convert.ToInt32(TFflightnum);
+                    foreach (Flight echo in flights)
+                    {
+                        if (flightnum == echo.FlightNum)
+                        {
+                            throw new InvalidSelectionException();
+                        }
+                    }
+                }
+                catch (InvalidSelectionException e) 
+                {
+                    Console.WriteLine("That flight number already exists. Please try again.");
+                }
+            }
+        }
         public static void AddAirport() 
         {
             Console.ForegroundColor = ConsoleColor.Red;
