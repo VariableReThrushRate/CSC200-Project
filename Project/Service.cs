@@ -1,11 +1,11 @@
 using System;
 using System.Data;
-using Microsoft.Data.SQLClient;
+using Microsoft.Data.SqlClient;
 
 
 public class Service
 {
-    public static string connectionString = "data source=LAPTOP-1U316NQH;initial catalog=AirportSoftware;trusted_connection=true";
+    public static string _connectionString = "data source=LAPTOP-1U316NQH;initial catalog=AirportSoftware;trusted_connection=true";
 
 
     // Method to SELECT data
