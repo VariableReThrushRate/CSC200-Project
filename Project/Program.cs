@@ -193,11 +193,12 @@ namespace Project
                 string brug = Console.ReadLine();
                 try
                 {
-                    int balug = Convert.ToInt32(brug);
                     if (brug == "EEE")
                     {
                         break;
                     }
+                    int balug = Convert.ToInt32(brug);
+                    
 
                     var found = flights.Find(flight => flight.FlightNum == balug);
                     if (found == null) { throw new InvalidSelectionException(); }
@@ -314,6 +315,7 @@ namespace Project
         }
         public static void AddFlight() 
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             int flightnum;
             Aircraft aircraft;
             Airport departure;
@@ -345,7 +347,7 @@ namespace Project
 
             while (true) 
             {
-                Console.WriteLine("Please select an aircraft: ");
+                Console.WriteLine("Please select an aircraft by callsign: ");
                     string brug = Console.ReadLine();
                     try
                     {
@@ -420,7 +422,7 @@ namespace Project
                     {
                         break;
                     }
-                    airports.Add(new Airport(Name, Callsign, Convert.ToInt32(l1), Convert.ToInt32(l2)));
+                    airports.Add(new Airport(Name, Callsign, Convert.ToDouble(l1), Convert.ToDouble(l2)));
                     break;
                 }
 
