@@ -35,10 +35,10 @@ namespace Project
                 Console.WriteLine("4. List all aircraft in the fleet.");
                 Console.WriteLine("5. Show all airports associated with our fleet.");
                 Console.WriteLine("6. List all the flights of our fleet.");
+                Console.WriteLine("7. Add an aircraft.");
                 Console.WriteLine("8. Add an airport.");
                 Console.WriteLine("9. Add a flight.");
                 Console.WriteLine("10. Remove an airport.");
-                Console.WriteLine("11. Remove a flight.");
                 Console.WriteLine("11. Remove an airport.");
                 Console.WriteLine("12. Remove a flight.");
                 Console.Write("Insert selection here: ");
@@ -128,12 +128,13 @@ namespace Project
         {
             airports.Add(new Airport("Seatac", "KSEA", 47.448355745344145, -122.30849428001085));
             airports.Add(new Airport("Las Vegas", "KLAS", 36.08, -115.152222));
+            planes.Add(new Aircraft("Whiskey Alpha Lima", Ptype.AirbusA220));
             foreach (Airport airport in airports)
             {
                 Console.WriteLine(airport);
             }
             //planes.Add();
-            flights.Add(new Flight(1, new Aircraft("Whiskey Alpha Lima", Ptype.AirbusA220), airports.Find(airport => airport.Callsign == "KSEA"), airports.Find(airport => airport.Callsign == "KLAS")));
+            flights.Add(new Flight(1, planes[0], airports.Find(airport => airport.Callsign == "KSEA"), airports.Find(airport => airport.Callsign == "KLAS")));
             foreach (Flight flight in flights)
             {
                 Console.WriteLine(flight);
