@@ -431,9 +431,73 @@ namespace Project
                 }
             }
         }
-        public static void RemoveAircraft() { throw new NotImplementedException(); }
-        public static void RemoveFlight() { throw new NotImplementedException(); }
-        public static void RemoveAirport() { throw new NotImplementedException(); }
+        public static void RemoveAircraft() 
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Now removing an aircraft!");
+            while (true)
+            {
+                Console.WriteLine("Please select an aircraft: ");
+                string brug = Console.ReadLine();
+                try
+                {
+                    bool alpha = planes.RemoveAll(plane => plane.Callsign == brug) > 0;
+                    if (!alpha) { throw new InvalidSelectionException(); }
+                    break;
+                }
+                catch (InvalidSelectionException exception)
+                {
+                    Console.Write("Callsign not found. Please try again.");
+                    //brug = Console.ReadLine();
+                }
+                catch { Console.WriteLine("Please try again, as that did not work."); }
+            }
+        }
+        public static void RemoveFlight() 
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Now removing a flight!");
+            while (true)
+            {
+                Console.WriteLine("Please select a flight by flight number: ");
+                string brug = Console.ReadLine();
+                try
+                {
+                    int flightnum = Convert.ToInt32(brug);
+                    bool alpha = flights.RemoveAll(flight => flight.FlightNum == flightnum) > 0;
+                    if (!alpha) { throw new InvalidSelectionException(); }
+                    break;
+                }
+                catch (InvalidSelectionException exception)
+                {
+                    Console.Write("Callsign not found. Please try again.");
+                    //brug = Console.ReadLine();
+                }
+                catch { Console.WriteLine("Please try again, as that did not work."); }
+            }
+        }
+        public static void RemoveAirport() 
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Now removing an airport!");
+            while (true)
+            {
+                Console.WriteLine("Please select an airport by callsign: ");
+                string brug = Console.ReadLine();
+                try
+                {
+                    bool alpha = planes.RemoveAll(plane => plane.Callsign == brug) > 0;
+                    if (!alpha) { throw new InvalidSelectionException(); }
+                    break;
+                }
+                catch (InvalidSelectionException exception)
+                {
+                    Console.Write("Callsign not found. Please try again.");
+                    //brug = Console.ReadLine();
+                }
+                catch { Console.WriteLine("Please try again, as that did not work."); }
+            }
+        }
     }
 
     public class Airport
