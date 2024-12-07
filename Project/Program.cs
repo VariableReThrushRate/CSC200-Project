@@ -315,6 +315,9 @@ namespace Project
         public static void AddFlight() 
         {
             int flightnum;
+            Aircraft aircraft;
+            Airport departure;
+            Airport arrival;
             Console.WriteLine("Adding a new flight!"); 
             
             while (true) 
@@ -331,12 +334,71 @@ namespace Project
                             throw new InvalidSelectionException();
                         }
                     }
+                    break;
                 }
                 catch (InvalidSelectionException e) 
                 {
                     Console.WriteLine("That flight number already exists. Please try again.");
                 }
+                catch { Console.WriteLine("That did not work. Please try again."); }
             }
+
+            while (true) 
+            {
+                Console.WriteLine("Please select an aircraft: ");
+                    string brug = Console.ReadLine();
+                    try
+                    {
+                        aircraft = planes.Find(plane => plane.Callsign == brug);
+                        if (aircraft == null) { throw new InvalidSelectionException(); }
+                        break;
+                    }
+                    catch (InvalidSelectionException exception)
+                    {
+                        Console.Write("Callsign not found. Please try again.");
+                        //brug = Console.ReadLine();
+                    }
+                    catch { Console.WriteLine("Please try again, as that did not work."); }
+            }
+
+            while (true)
+            {
+                Console.WriteLine("Please select a departure airport by callsign: ");
+                string brug = Console.ReadLine();
+                try
+                {
+                    departure = airports.Find(port => port.Callsign == brug);
+                    if (aircraft == null) { throw new InvalidSelectionException(); }
+                    break;
+                }
+                catch (InvalidSelectionException exception)
+                {
+                    Console.Write("Callsign not found. Please try again.");
+                    //brug = Console.ReadLine();
+                }
+                catch { Console.WriteLine("Please try again, as that did not work."); }
+            }
+
+            while (true)
+            {
+                Console.WriteLine("Please select an arrival airport by callsign: ");
+                string brug = Console.ReadLine();
+                try
+                {
+                    arrival = airports.Find(port => port.Callsign == brug);
+                    if (aircraft == null) { throw new InvalidSelectionException(); }
+                    break;
+                }
+                catch (InvalidSelectionException exception)
+                {
+                    Console.Write("Callsign not found. Please try again.");
+                    //brug = Console.ReadLine();
+                }
+                catch { Console.WriteLine("Please try again, as that did not work."); }
+            }
+
+            flights.Add(new Flight(flightnum, aircraft, departure, arrival));
+
         }
         public static void AddAirport() 
         {
