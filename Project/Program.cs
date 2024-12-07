@@ -301,6 +301,10 @@ namespace Project
                     {
                         throw new FormatException();
                     }
+                    if (Callsign == null) 
+                    {
+                        throw new InvalidSelectionException();
+                    }
                     planes.Add(new Aircraft(Callsign, tmp));
                     
                     break;
