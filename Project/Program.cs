@@ -297,7 +297,37 @@ namespace Project
             }
         }
         public static void AddFlight() { throw new NotImplementedException(); }
-        public static void AddAirport() { throw new NotImplementedException(); }
+        public static void AddAirport() 
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Now adding a new Airport. Type EEE to leave the function.");
+            while (true)
+            {
+                Console.Write("Please enter a callsign for this airport:");
+                string Callsign = Console.ReadLine();
+                Console.WriteLine("Please enter the full name:");
+                string Name = Console.ReadLine();
+                Console.Write("Input latitude: ");
+                string l1 = Console.ReadLine();
+                Console.Write("Input longitude: ");
+                string l2 = Console.ReadLine();
+                try
+                {
+                    if (Callsign == "EEE" || Name == "EEE")
+                    {
+                        break;
+                    }
+                    airports.Add(new Airport(Name, Callsign, Convert.ToInt32(l1), Convert.ToInt32(l2)));
+                    break;
+                }
+
+                catch (Exception e)
+                {
+                    Console.WriteLine($"Error: {e.Message}, {e.ToString}");
+                    Console.WriteLine("Please try again, as that did not work.");
+                }
+            }
+        }
         public static void RemoveAircraft() { throw new NotImplementedException(); }
         public static void RemoveFlight() { throw new NotImplementedException(); }
         public static void RemoveAirport() { throw new NotImplementedException(); }
