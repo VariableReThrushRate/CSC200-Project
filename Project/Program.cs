@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 using System.Security.AccessControl;
 using System.Security.Cryptography.X509Certificates;
 
@@ -351,26 +352,34 @@ namespace Project
 
             while (true) 
             {
-                Console.WriteLine("Please select an aircraft by callsign: ");
-                    string brug = Console.ReadLine();
-                    try
-                    {
-                        aircraft = planes.Find(plane => plane.Callsign == brug);
-                        if (aircraft == null) { throw new InvalidSelectionException(); }
-                        break;
-                    }
-                    catch (InvalidSelectionException exception)
-                    {
-                        Console.Write("Callsign not found. Please try again.");
-                        //brug = Console.ReadLine();
-                    }
-                    catch { Console.WriteLine("Please try again, as that did not work."); }
+                Console.WriteLine("Please select an aircraft by callsign or type 'EEE' to exit: ");
+                string brug = Console.ReadLine();
+                if (brug == "EEE")
+                {
+                    break;
+                }
+                try
+                {
+                    aircraft = planes.Find(plane => plane.Callsign == brug);
+                    if (aircraft == null) { throw new InvalidSelectionException(); }
+                    break;
+                }
+                catch (InvalidSelectionException exception)
+                {
+                    Console.Write("Callsign not found. Please try again.");
+                    //brug = Console.ReadLine();
+                }
+                catch { Console.WriteLine("Please try again, as that did not work."); }
             }
 
             while (true)
             {
-                Console.WriteLine("Please select a departure airport by callsign: ");
+                Console.WriteLine("Please select a departure airport by callsign or type 'EEE' to exit: ");
                 string brug = Console.ReadLine();
+                if (brug == "EEE")
+                {
+                    break;
+                }
                 try
                 {
                     departure = airports.Find(port => port.Callsign == brug);
@@ -387,8 +396,12 @@ namespace Project
 
             while (true)
             {
-                Console.WriteLine("Please select an arrival airport by callsign: ");
+                Console.WriteLine("Please select an arrival airport by callsign or type 'EEE' to exit: ");
                 string brug = Console.ReadLine();
+                if (brug == "EEE")
+                {
+                    break;
+                }
                 try
                 {
                     arrival = airports.Find(port => port.Callsign == brug);
