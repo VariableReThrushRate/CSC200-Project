@@ -368,7 +368,7 @@ namespace Project
                 try
                 {
                     departure = airports.Find(port => port.Callsign == brug);
-                    if (aircraft == null) { throw new InvalidSelectionException(); }
+                    if (departure == null) { throw new InvalidSelectionException(); }
                     break;
                 }
                 catch (InvalidSelectionException exception)
@@ -386,7 +386,7 @@ namespace Project
                 try
                 {
                     arrival = airports.Find(port => port.Callsign == brug);
-                    if (aircraft == null) { throw new InvalidSelectionException(); }
+                    if (arrival == null) { throw new InvalidSelectionException(); }
                     break;
                 }
                 catch (InvalidSelectionException exception)
